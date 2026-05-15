@@ -1,0 +1,133 @@
+Criação das Rotas do Projeto Node.js
+OBS: A cada Rota criada é necessário parar o projeto no node.js com a tecla de atalho:
+	ctrl + C
+e executar novamente o projeto novamente
+	node index.js 
+
+*****
+
+const express = require('express'); /* import express */
+const app = express() /* Criação de uma instância do express */
+
+// Rota Inicial
+app.get('/', (req, res) => {
+    res.send("Rota Inicial do Projeto")
+})
+
+// 2º Rota
+app.get('/sobre', (req, res) => {
+    res.send("Rota Sobre do Projeto")
+})
+
+/**
+ * Escreva o comando abaixo sempre no fim da codificação
+ * Inicializar o Servidor na porta 4000
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
++---------------------------------------------------------------------------------------------------------------------------------
+ */
+app.listen(4000, (error) => { 
+    if(error){
+        console.log("Server is not running")
+    } else {
+        console.log("Server is running")
+    }
+})
+
+
+----------------------------
+
+
+- Criação de Novas Rotas no Projeto Node
+
+// 3º Rota - json
+app.get('/dados', (req, res) => {
+    res.json({ message: "Dados da Rota" })
+})
+
+
+
+
+ - Instalação do Insominia	
+
+
+
+
+
+
+
+
+
+
+ import React, { useEffect, useState } from 'react';
+import { Text, View } from 'react-native';
+
+export default function Index() {
+  const [msg, setMsg] = useState("Carregando...");
+  const [lista, setLista] = useState([]);
+
+  useEffect(() => { // useEffet é uma função que executa um código quando o componente é montado ou atualizado. O array vazio [] indica que o código deve ser executado apenas uma vez, quando o componente é montado.
+    const ip = '127.0.0.1'; // Use o IP que funcionou nos testes anteriores
+
+    // Busca Rota 1 (Objeto)
+    fetch(`http://${ip}:4000/dados`)
+      .then(res => res.json())
+      .then(json => setMsg(json.message));
+
+    // Busca Rota 2 (Lista)
+    fetch(`http://${ip}:4000/lista`)
+      .then(res => res.json())
+      .then(json => setLista(json));
+  }, []);
+
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap: 20 }}>
+      
+      {/* Exibindo a Rota de Dados */}
+      <View>
+        <Text style={{ fontWeight: 'bold' }}>Rota Dados:</Text>
+        <Text style={{ color: 'blue' }}>{msg}</Text>
+      </View>
+
+      {/* Exibindo a Rota de Lista */}
+      <View>
+        <Text style={{ fontWeight: 'bold' }}>Rota Lista:</Text>
+        {lista.map(item => (
+          <Text key={item.id}>• {item.nome}</Text>
+        ))}
+      </View>
+
+    </View>
+  );
+}
