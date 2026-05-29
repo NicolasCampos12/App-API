@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, TextInput } from "react-native";
 
 export const styles = StyleSheet.create({
 
@@ -41,6 +41,20 @@ export const styles = StyleSheet.create({
         display:'flex', 
         width:'400px',
     },
+    button:{
+        backgroundColor: '#3fb39aff', 
+        padding: 10, 
+        borderRadius: 5,
+    }
+
+
+
+
+
+
+
+
+    
 
 })
 

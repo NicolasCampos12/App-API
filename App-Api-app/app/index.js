@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Text, View } from "react-native"
+import { Text, View, TouchableOpacity } from "react-native"
+import { Link } from "expo-router";
 
 
 import styles from "./style.js";
@@ -25,6 +26,17 @@ export default function Index() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap: 20,backgroundColor:'#EAEFEF' }}>
 
+<TouchableOpacity style={styles.button}>
+        <Link href="/bd" asChild>
+          <Text>Banco de Dados</Text>
+        </Link>
+</TouchableOpacity>
+
+<TouchableOpacity style={styles.button}>
+        <Link href="/cadastro" asChild>
+          <Text>Cadastro de Usuarios</Text>
+        </Link>
+</TouchableOpacity>
 
 
       <View>
@@ -43,7 +55,8 @@ export default function Index() {
       ))}
       </View>
 
-     
+    
+    
 
       <View style={styles.lista}>
       <View>

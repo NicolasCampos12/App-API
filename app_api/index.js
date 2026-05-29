@@ -19,7 +19,7 @@ app.use(express.json());
 
 
 // 1. Conexão com o Banco do XAMPP
-const sequelize = new Sequelize('app-blog', 'root', '', {
+const sequelize = new Sequelize('app-api', 'root', '', {
   host: 'localhost', 
   dialect: 'mysql',
   port: 3306, 
@@ -39,10 +39,7 @@ const User = sequelize.define('User', {
   email: DataTypes.STRING,
   telefone: DataTypes.STRING,
   pass: DataTypes.STRING,
-  slug: DataTypes.STRING,
-  image: DataTypes.STRING,
-  status: DataTypes.INTEGER,
-  id_level_users: DataTypes.INTEGER
+
 }, {
   tableName: 'users' // Garante que o Sequelize use o nome exato da sua tabela
 });
