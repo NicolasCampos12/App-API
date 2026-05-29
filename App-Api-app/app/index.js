@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Text, View } from "react-native"
 
+
 import styles from "./style.js";
 
 export default function Index() {
@@ -27,32 +28,31 @@ export default function Index() {
 
 
       <View>
-        <Text style={{ fontWeight:'bold',fontSize:'1.15rem', }}>{msg}</Text>
+        <Text style={styles.mensagem}>{msg}</Text>
       </View>
 
 
-      <View style={{borderColor:'black', borderWidth:'2px', backgroundColor:'#BFC9D1',}}>
-      <Text style={{ fontWeight:'bold',padding:'10px',fontSize:'1.25rem'}}> Rota Lista:</Text>
+      <View style={styles.lista}>
+      <Text style={styles.rotaLista}> Rota Lista:</Text>
       {lista.map(item => (
         
-        <View style={{display:'flex', justifyContent:'center', alignItems:'center',width:'400px',padding:'5px'}}>
-        <Text key={item.id} style={{fontSize:'1.0015rem',width:'100%', textAlign:'center',padding:'5px',}}>{item.nome}</Text>
+        <View style={styles.viewText1}>
+        <Text key={item.id} style={styles.text}>{item.nome}</Text>
         </View>
   
       ))}
       </View>
 
-      
-      
+     
 
-      <View style={{borderColor:'black', borderWidth:'2px', backgroundColor:'#BFC9D1',}}>
+      <View style={styles.lista}>
       <View>
-        <Text style={{ fontWeight:'bold',fontSize:'1.15rem', }}>{msg}</Text>
+        <Text style={styles.tituloRotaLista2}>{msg}</Text>
       </View>
         <Text>
           {lista.map(item => (
-            <View style={{borderColor:'black', borderWidth:'1px', backgroundColor:'#BFC9D1',}}>
-            <Text key={item.id}  style={{fontSize:'1.0015rem',width:'100%', textAlign:'center',padding:'5px',}}>-{item.nome}</Text>
+            <View style={styles.viewText2}>
+            <Text key={item.id}  style={styles.text}>--{item.nome}</Text>
             </View>
           ))}
         </Text>
