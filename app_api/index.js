@@ -1,24 +1,18 @@
-const express = require('express'); /* Import express */
-const cors = require('cors');       /* Import cors */
-const { Sequelize, DataTypes } = require('sequelize');
+const express = require('express'); // requisição do express
+const cors = require('cors');
+const { Sequelize, DataTypes } = require('sequelize'); // requisição do sequelize
 
-const app = express(); /* Criação de uma instância do express */
+const app = express(); // criação da instância do express
+const porta = 4000; // definição da porta do servidor
 
-//const port = 4000;//Definição da porta do servidor
-
-// Configuração do CORS e JSON Middleware
+// 2. ativação do cors p/ permitir acesso as rotas
 app.use(cors({
     origin: '*', // p/ acesso de qualquer origem
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type']
 }));
-app.use(express.json());
+app.use(express.json()); // p/ permitir o uso de json nas requisições
 
-
-
-
-
-// 1. Conexão com o Banco do XAMPP
 const sequelize = new Sequelize('app-api', 'root', '', {
   host: 'localhost', 
   dialect: 'mysql',
@@ -28,7 +22,6 @@ const sequelize = new Sequelize('app-api', 'root', '', {
   }
 });
 
-// 2. Mapeamento Exato da sua tabela 'users'
 const User = sequelize.define('User', {
   id: {
     type: DataTypes.INTEGER,
@@ -44,9 +37,7 @@ const User = sequelize.define('User', {
   tableName: 'users' // Garante que o Sequelize use o nome exato da sua tabela
 });
 
-// --- Suas Rotas do Projeto ---
-
-// Rota Inicial
+// criação da 1ª rota do servidor
 app.get('/', (req, res) => {
     res.send('Hello World!'); // resposta da rota
 })
@@ -58,7 +49,7 @@ app.get('/sobre', (req, res) => {
 
 // 3ª rota - usando json
 app.get('/dados', (req, res) => {
-    res.json({ message: "Porta executada: " + port, dados: "12345678987654321" }); // resposta da rota
+    res.json({ message: "Porta executada: " + porta, dados: "Teste da rota: 12345678987654321" }); // resposta da rota
 })
 
 // 4º rota - usando json
@@ -72,22 +63,6 @@ app.get('/lista', (req, res) => {
     res.json(lista); // resposta da rota
 })
 
-// ROTA PARA TESTAR O SERVIDOR -- PASSADO PELO NELCI
-
-// app.listen(port, (error) => { // definição da porta de escuta do servidor
-//     if (error) {
-//         console.log('Server is not working/responding: \n', error);
-//     } else {
-//         console.log('Running server at port ' + port + '...');
-//     }
-// })
-// // para executar o servidor, usar o comando: node index.js
-
-
-
-
-////////////////////// ENTRADA BANCO DE DADOS /////////////////////////////////////
-
 // Rota Nova: Listar os Usuários Reais do Banco de Dados do XAMPP
 app.get('/usuarios', async (req, res) => {
   try {
@@ -95,23 +70,20 @@ app.get('/usuarios', async (req, res) => {
     res.json(usuariosDoBanco);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Erro ao buscar dados do MySQL do XAMPP' });
+    res.status(500).json({ error: 'Erro ao buscar dados: ' + error.message });
   }
 });
 
 // 3. Autenticar conexão e Iniciar o Servidor na porta 4000
 sequelize.authenticate()
   .then(() => {
-    console.log('Conectado ao MySQL do XAMPP com sucesso!');
+    console.log('Conexão com o banco bem sucedida.');
     
     app.listen(4000, () => {
-      console.log('Server is running, port: 4000');
+      console.log('Servidor rodando na porta ' + porta);
     });
   })
   .catch((error) => {
     console.error('Não foi possível conectar ao banco de dados:', error);
   });
-
-
-  ////////////////////// FINAL - ENTRADA BANCO DE DADOS /////////////////////////////////////
 

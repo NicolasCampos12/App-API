@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Text, View, TouchableOpacity,TextInput } from "react-native"
+import { Text, View, TouchableOpacity, TextInput } from "react-native"
 import { Link } from "expo-router";
 
 
@@ -25,7 +25,7 @@ export default function Index() {
 
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap: 20, backgroundColor: '#EAEFEF' }}>
-            <View style={{ display: 'flex', flexDirection: 'row', gap: 10 }}>
+            {/* <View style={{ display: 'flex', flexDirection: 'row', gap: 10 }}>
                 <TextInput placeholder="Nome" style={{ backgroundColor: '#fff', padding: 10, borderRadius: 5, width: 200 }} />
 
                 <TextInput placeholder="Email" style={{ backgroundColor: '#fff', padding: 10, borderRadius: 5, width: 200 }} />
@@ -34,6 +34,29 @@ export default function Index() {
 
                 <TextInput placeholder="Senha" secureTextEntry={true} style={{ backgroundColor: '#fff', padding: 10, borderRadius: 5, width: 200 }} />
 
+                <TouchableOpacity style={styles.button}>
+                    <Text style={{ color: '#fff', fontWeight: 'bold' }}>Cadastrar</Text>
+                </TouchableOpacity>
+            </View> */}
+
+            
+            <View style={{ display: 'flex', flexDirection: 'row', gap: 10 }}>
+                <TextInput placeholder="Nome" style={{ backgroundColor: '#fff', padding: 10, borderRadius: 5, width: 200 }} />
+            </View>
+
+            <View style={{ display: 'flex', flexDirection: 'row', gap: 10 }}>
+                <TextInput placeholder="Email" style={{ backgroundColor: '#fff', padding: 10, borderRadius: 5, width: 200 }} />
+            </View>
+
+            <View style={{ display: 'flex', flexDirection: 'row', gap: 10 }}>
+                <TextInput placeholder="Telefone" keyboardType="numeric" style={{ backgroundColor: '#fff', padding: 10, borderRadius: 5, width: 200 }} />
+            </View>
+
+            <View style={{ display: 'flex', flexDirection: 'row', gap: 10 }}>
+                <TextInput placeholder="Senha" secureTextEntry={true} style={{ backgroundColor: '#fff', padding: 10, borderRadius: 5, width: 200 }} />
+            </View>
+
+            <View style={{ display: 'flex', flexDirection: 'row', gap: 10 }}>
                 <TouchableOpacity style={styles.button}>
                     <Text style={{ color: '#fff', fontWeight: 'bold' }}>Cadastrar</Text>
                 </TouchableOpacity>

@@ -1,61 +1,61 @@
-import { StyleSheet, TextInput } from "react-native";
+
+import { use } from 'react';
+import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-
-    lista:{
-        borderColor:'black',
-        borderWidth:'2px',
-        backgroundColor:'#BFC9D1',
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: 20
     },
-    mensagem:{
-        fontWeight:'bold',
-        fontSize:'1.15rem',
+    title: {
+        fontWeight: 'bold',
+        fontSize: 22,
+        color: '#3fb39aff',
+        textShadowColor: '#000',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 2,
+
+        borderBottomColor: 'black',
+        borderBottomWidth: 3,        
+        borderStyle: 'dashed',
     },
-    rotaLista:{
-        fontWeight:'bold',
-        padding:'10px',
-        fontSize:'1.25rem',
+    list: {
+        fontSize: 18,
+        color: '#fff',
+        
     },
-    tituloRotaLista2:{
-        fontWeight:'bold',
-        fontSize:'1.15rem',
-        padding:'10px',
+    listContainer: {
+        backgroundColor: '#1c5246ff',
+        padding: 15,
+        margin: 10,
+        borderRadius: 10,
+        borderWidth: 1,
+        width: '50%',
+        alignItems: 'center',
+        gap: 10,
     },
-    text:{
-        fontSize:'1.0015rem',
-        width:'100%',
-        textAlign:'center',
-        padding:'5px',
+    bg: {
+        flex: 1,
+        backgroundColor: '#696666ff',
+        padding: 20,
     },
-    viewText1:{
-        display:'flex', 
-        justifyContent:'center', 
-        alignItems:'center',
-        width:'400px',
-        padding:'5px',
+    usersContainer: {
+        backgroundColor: '#1c5246ff',
+        padding: 15,
+        margin: 10,
+        borderRadius: 10,
+        borderWidth: 1,
+        width: '80%',
+        alignItems: 'center',
+        gap: 10,
     },
-    viewText2:{
-        backgroundColor:'#BFC9D1',
-        justifyContent:'center', 
-        alignItems:'center', 
-        display:'flex', 
-        width:'400px',
+    scrollContainer: {
+        flex: 1,
+        width: '100%',
     },
-    button:{
-        backgroundColor: '#3fb39aff', 
-        padding: 10, 
-        borderRadius: 5,
-    }
-
-
-
-
-
-
-
-
-    
-
-})
+});
 
 export default styles;
+

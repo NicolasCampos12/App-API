@@ -1,82 +1,56 @@
+import { Text, View, Link, TouchableOpacity } from "react-native";
 import { useEffect, useState } from "react";
-import { Text, View, TouchableOpacity } from "react-native"
-import { Link } from "expo-router";
 
+import Styles from "./style";
 
-import styles from "./style.js";
 
 export default function Index() {
-  const [msg, setMsg] = useState("Carregando ...");
+  const [msg, setMsg] = useState("Loading...");
   const [lista, setLista] = useState([]);
-  
-  useEffect(() => {//useEffect e uma função que xecuta um codigo quando o componente
-    const ip = "127.0.0.1";//Use o ip que funcionou nos testes anteriores
+  const [users, setUsers] = useState([]);
 
-    //Busca pela rota 1 (Objeto)
+  useEffect(() => {
+    const ip = '127.0.0.1'; // IP do servidor (localhost)
+
+    // busca rota 1
     fetch(`http://${ip}:4000/dados`)
-      .then((res) => res.json())
+      .then(res => res.json())
       .then(json => setMsg(json.message));
+    // busca rota 2
+    fetch(`http://${ip}:4000/lista`)
+      .then(res => res.json())
+      .then(json => setLista(json));
+    
+    fetch(`http://${ip}:4000/usuarios`)
+      .then(res => res.json())
+      .then(json => setUsers(json));
 
-      //Busca pela rota 2 (Lista)
-      fetch(`http://${ip}:4000/lista`)
-        .then((res) => res.json())
-        .then(json => setLista(json));
-  }, []);
-
+  }, []); // o array vazio [] garante que o useEffect seja executado apenas uma vez, quando o componente for montado
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap: 20,backgroundColor:'#EAEFEF' }}>
-
-<TouchableOpacity style={styles.button}>
-        <Link href="/bd" asChild>
-          <Text>Banco de Dados</Text>
-        </Link>
-</TouchableOpacity>
-
-<TouchableOpacity style={styles.button}>
-        <Link href="/cadastro" asChild>
-          <Text>Cadastro de Usuarios</Text>
-        </Link>
-</TouchableOpacity>
-
-
-      <View>
-        <Text style={styles.mensagem}>{msg}</Text>
+    <View style={Styles.bg}>
+      <View style={Styles.container}>
+        <Text style={Styles.title}>Rota Dados:</Text>
+        <Text style={Styles.list}>{msg}</Text>
       </View>
-
-
-      <View style={styles.lista}>
-      <Text style={styles.rotaLista}> Rota Lista:</Text>
-      {lista.map(item => (
-        
-        <View style={styles.viewText1}>
-        <Text key={item.id} style={styles.text}>{item.nome}</Text>
-        </View>
-  
-      ))}
-      </View>
-
-    
-    
-
-      <View style={styles.lista}>
-      <View>
-        <Text style={styles.tituloRotaLista2}>{msg}</Text>
-      </View>
-        <Text>
+      <View style={Styles.container}>
+        <Text style={Styles.title}>Rota Lista:</Text>
+        <View style={Styles.listContainer}>
           {lista.map(item => (
-            <View style={styles.viewText2}>
-            <Text key={item.id}  style={styles.text}>--{item.nome}</Text>
-            </View>
+            <Text key={item.id} style={Styles.list}>{item.nome}</Text>
           ))}
-        </Text>
+        </View>
       </View>
 
-
-
-
+      <View style={Styles.container}>
+        <Text style={Styles.title}>Rota Usuários do Banco de Dados:</Text>
+        <View style={Styles.usersContainer}>
+          {users.map(user => (
+            <Text key={user.id} style={Styles.list}>{user.name} - {user.email} - {user.status}</Text>
+          ))}
+        </View>
+      </View>
 
 
     </View>
   );
 }
-
