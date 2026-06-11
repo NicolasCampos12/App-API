@@ -1,35 +1,27 @@
-
-////////////////////// ENTRADA BANCO DE DADOS /////////////////////////////////////
-
-// Rota Nova: Listar os Usuários Reais do Banco de Dados do XAMPP
-app.get('/usuarios', async (req, res) => {
+// Rota para Cadastrar um Novo Usuário
+app.post('/usuarios', async (req, res) => {
   try {
-    const usuariosDoBanco = await User.findAll();
-    res.json(usuariosDoBanco);
+    // Pega os dados enviados no corpo da requisição (body)
+    const { name, email, telefone, pass } = req.body;
+
+    // Validação simples para garantir que os campos obrigatórios existem
+    if (!name || !email || !pass) {
+      return res.status(400).json({ error: 'Nome, email e senha são obrigatórios.' });
+    }
+
+    // Cria o usuário no banco de dados do XAMPP
+    const novoUsuario = await User.create({
+      name,
+      email,
+      telefone,
+      pass
+    });
+
+    // Retorna o usuário criado com status 201 (Created)
+    res.status(201).json({ message: 'Usuário cadastrado com sucesso!', usuario: novoUsuario });
+    
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Erro ao buscar dados do MySQL do XAMPP' });
+    res.status(500).json({ error: 'Erro ao cadastrar usuário: ' + error.message });
   }
 });
-
-// 3. Autenticar conexão e Iniciar o Servidor na porta 4000
-sequelize.authenticate()
-  .then(() => {
-    console.log('Conectado ao MySQL do XAMPP com sucesso!');
-    
-    app.listen(4000, () => {
-      console.log('Server is running, port: 4000');
-    });
-  })
-  .catch((error) => {
-    console.error('Não foi possível conectar ao banco de dados:', error);
-  });
-
-
-  ////////////////////// FINAL - ENTRADA BANCO DE DADOS /////////////////////////////////////
-
-const express = require('express'); /* Import express */
-const cors = require('cors');       /* Import cors */
-const { Sequelize, DataTypes } = require('sequelize');
-
-const app = express(); /* Criação de uma instância do express */

@@ -1,6 +1,6 @@
-import { Text, View, Link, TouchableOpacity } from "react-native";
+import { Text, View, TouchableOpacity } from "react-native"; // Link removido daqui
 import { useEffect, useState } from "react";
-
+import { Link } from 'expo-router'; // Descomentado! Agora o Link vem do lugar certo
 import Styles from "./style";
 
 
@@ -20,7 +20,7 @@ export default function Index() {
     fetch(`http://${ip}:4000/lista`)
       .then(res => res.json())
       .then(json => setLista(json));
-    
+
     fetch(`http://${ip}:4000/usuarios`)
       .then(res => res.json())
       .then(json => setUsers(json));
@@ -31,7 +31,18 @@ export default function Index() {
       <View style={Styles.container}>
         <Text style={Styles.title}>Rota Dados:</Text>
         <Text style={Styles.list}>{msg}</Text>
+        <Link href="/cadastro" asChild style={Styles.link}>
+        <TouchableOpacity style={Styles.button}>
+          <Text style={Styles.buttonText}>Ir para Cadastro</Text>
+        </TouchableOpacity>
+      </Link>
       </View>
+
+
+      
+
+
+
       <View style={Styles.container}>
         <Text style={Styles.title}>Rota Lista:</Text>
         <View style={Styles.listContainer}>

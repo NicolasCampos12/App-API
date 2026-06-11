@@ -55,6 +55,22 @@ export const styles = StyleSheet.create({
         flex: 1,
         width: '100%',
     },
+    link:{
+        textDecorationLine: 'none',
+        backgroundColor: '#3fb39aff',
+        padding: 10,
+        borderRadius: 5,
+        width: '20%',
+        alignItems: 'center',
+        marginBottom: 20,
+    },
+    button:{
+        backgroundColor: '#3fb39aff',
+        padding: 10,
+        borderRadius: 5,
+        width: '200px',
+        alignItems: 'center',
+    },
 });
 
 export default styles;
