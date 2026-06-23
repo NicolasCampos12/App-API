@@ -60,7 +60,7 @@ app.post('/usuarios', async (req, res) => {
   try {
     const { name, email, telefone, pass } = req.body;
     const novoUsuario = await User.create({ name, email, telefone, pass });
-    res.status(201).json(novoUsuario); 
+    return res.status(201).json(novoUsuario); 
   } catch (error) {
     console.error("Erro no servidor:", error);
     res.status(500).json({ error: error.message });
