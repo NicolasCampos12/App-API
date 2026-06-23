@@ -1,4 +1,4 @@
-import { Text, View, TouchableOpacity } from "react-native"; // Link removido daqui
+import { Text, View, TouchableOpacity, Button, } from "react-native"; // Link removido daqui
 import { useEffect, useState } from "react";
 import { Link } from 'expo-router'; // Descomentado! Agora o Link vem do lugar certo
 import Styles from "./style";
@@ -8,6 +8,8 @@ export default function Index() {
   const [msg, setMsg] = useState("Loading...");
   const [lista, setLista] = useState([]);
   const [users, setUsers] = useState([]);
+
+  
 
   useEffect(() => {
     const ip = '127.0.0.1'; // IP do servidor (localhost)
@@ -25,7 +27,7 @@ export default function Index() {
       .then(res => res.json())
       .then(json => setUsers(json));
 
-  }, []); // o array vazio [] garante que o useEffect seja executado apenas uma vez, quando o componente for montado
+  }, []); 
   return (
     <View style={Styles.bg}>
       <View style={Styles.container}>
@@ -60,6 +62,8 @@ export default function Index() {
           ))}
         </View>
       </View>
+
+
 
 
     </View>

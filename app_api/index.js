@@ -87,3 +87,26 @@ sequelize.authenticate()
     console.error('Não foi possível conectar ao banco de dados:', error);
   });
 
+
+
+
+  ////////////////////////////////////ROTA DO INSERT///////////////////////////////////////
+  // Rota para CRIAR um novo usuário (O React Native vai chamar esta rota)
+app.post('/usuarios', async (req, res) => {
+  try {
+    const { name, email, telefone, pass } = req.body;
+
+    // Se o Sequelize criar o usuário, precisamos responder o app!
+    const novoUsuario = await User.create({ name, email, telefone, pass });
+
+    // ATENÇÃO: Esta linha é obrigatória para destravar o app!
+    res.status(201).json(novoUsuario); 
+  } catch (error) {
+    console.error("Erro no servidor:", error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+////////////////////////////////////ROTA DO INSERT///////////////////////////////////////
+
+
