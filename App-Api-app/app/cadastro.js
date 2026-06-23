@@ -15,7 +15,7 @@ export default function Index() {
   const [pass, setPass] = useState('');
 
 
-   const handleCadastro = () => {
+   async function handleCadastro() {
     const ip = '192.168.70.1'; 
 
 
