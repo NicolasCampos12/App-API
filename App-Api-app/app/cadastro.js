@@ -16,8 +16,7 @@ export default function Index() {
 
 
    const handleCadastro = () => {
-    // Altere o IP conforme o seu ambiente (10.0.2.2 para emulador Android)
-    const ip = '127.0.0.1'; 
+    const ip = '192.168.70.1'; 
 
 
     // Dispara a requisição de cadastro para a rota POST

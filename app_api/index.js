@@ -14,7 +14,7 @@ app.use(cors({
 app.use(express.json()); // p/ permitir o uso de json nas requisições
 
 const sequelize = new Sequelize('app-api', 'root', '', {
-  host: 'localhost', 
+  host: '127.0.0.1', // Dica: usar 127.0.0.1 evita lentidão no Sequelize com MySQL
   dialect: 'mysql',
   port: 3306, 
   define: {
@@ -32,38 +32,19 @@ const User = sequelize.define('User', {
   email: DataTypes.STRING,
   telefone: DataTypes.STRING,
   pass: DataTypes.STRING,
-
 }, {
   tableName: 'users' // Garante que o Sequelize use o nome exato da sua tabela
 });
 
-// criação da 1ª rota do servidor
-app.get('/', (req, res) => {
-    res.send('Hello World!'); // resposta da rota
-})
-
-// criação da 2ª rota do servidor
-app.get('/sobre', (req, res) => {
-    res.send('Rota Sobre do Projeto'); // resposta da rota
-})
-
-// 3ª rota - usando json
-app.get('/dados', (req, res) => {
-    res.json({ message: "Porta executada: " + porta, dados: "Teste da rota: 12345678987654321" }); // resposta da rota
-})
-
-// 4º rota - usando json
+// rotas GET...
+app.get('/', (req, res) => res.send('Hello World!'));
+app.get('/sobre', (req, res) => res.send('Rota Sobre do Projeto'));
+app.get('/dados', (req, res) => res.json({ message: "Porta executada: " + porta, dados: "Teste da rota: 12345678987654321" }));
 app.get('/lista', (req, res) => {
-    const lista = [
-        { id: 1, nome: 'Item 1' },
-        { id: 2, nome: 'Item 2' },
-        { id: 3, nome: 'Item 3' }
-    ];
-    console.log("Alguém acessou a lista!"); // exibe a lista no console do servidor
-    res.json(lista); // resposta da rota
-})
+    const lista = [{ id: 1, nome: 'Item 1' }, { id: 2, nome: 'Item 2' }, { id: 3, nome: 'Item 3' }];
+    res.json(lista);
+});
 
-// Rota Nova: Listar os Usuários Reais do Banco de Dados do XAMPP
 app.get('/usuarios', async (req, res) => {
   try {
     const usuariosDoBanco = await User.findAll();
@@ -74,32 +55,11 @@ app.get('/usuarios', async (req, res) => {
   }
 });
 
-// 3. Autenticar conexão e Iniciar o Servidor na porta 4000
-sequelize.authenticate()
-  .then(() => {
-    console.log('Conexão com o banco bem sucedida.');
-    
-    app.listen(4000, () => {
-      console.log('Servidor rodando na porta ' + porta);
-    });
-  })
-  .catch((error) => {
-    console.error('Não foi possível conectar ao banco de dados:', error);
-  });
-
-
-
-
-  ////////////////////////////////////ROTA DO INSERT///////////////////////////////////////
-  // Rota para CRIAR um novo usuário (O React Native vai chamar esta rota)
+// Rota do INSERT
 app.post('/usuarios', async (req, res) => {
   try {
     const { name, email, telefone, pass } = req.body;
-
-    // Se o Sequelize criar o usuário, precisamos responder o app!
     const novoUsuario = await User.create({ name, email, telefone, pass });
-
-    // ATENÇÃO: Esta linha é obrigatória para destravar o app!
     res.status(201).json(novoUsuario); 
   } catch (error) {
     console.error("Erro no servidor:", error);
@@ -107,6 +67,16 @@ app.post('/usuarios', async (req, res) => {
   }
 });
 
-////////////////////////////////////ROTA DO INSERT///////////////////////////////////////
-
-
+// CORREÇÃO AQUI: Autenticar conexão e Iniciar o Servidor aceitando conexões externas
+sequelize.authenticate()
+  .then(() => {
+    console.log('Conexão com o banco bem sucedida.');
+    
+    // Adicionado o '0.0.0.0' para o Express aceitar conexões vindas da rede Wi-Fi/Emuladores
+    app.listen(porta, '0.0.0.0', () => {
+      console.log('Servidor rodando na porta ' + porta);
+    });
+  })
+  .catch((error) => {
+    console.error('Não foi possível conectar ao banco de dados:', error);
+  });
