@@ -9,7 +9,7 @@ export default function Index() {
   const [lista, setLista] = useState([]);
   const [users, setUsers] = useState([]);
 
-  
+  // O index funcionando
 
   useEffect(() => {
     const ip = '127.0.0.1'; // IP do servidor (localhost)

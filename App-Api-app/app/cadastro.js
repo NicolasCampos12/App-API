@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity, TextInput, Alert } from "react-native"
 import { Link } from "expo-router";
 import { useRouter } from "expo-router";
 
-
+//Cadastro Nelci ja corrijiu
 import styles from "./style.js";
 
 export default function Index() {

@@ -5,6 +5,7 @@ const { Sequelize, DataTypes } = require('sequelize');
 const app = express(); 
 const porta = 4000; 
 
+//index.js nelci ja corrijiu, e ta funcionando
 
 app.use(cors({
     origin: '*', 

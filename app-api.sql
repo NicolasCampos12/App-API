@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 29/05/2026 às 13:39
+-- Tempo de geração: 25/06/2026 às 13:34
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -40,7 +40,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `telefone`, `pass`) VALUES
-(1, 'Saulo', 'Saulo@gmail.com', '4002889212', '123456');
+(1, 'Saulo', 'Saulo@gmail.com', '4002889212', '123456'),
+(2, 'Thales', 'Thales@gmail.com', '4002889212', '123456'),
+(3, 'Murilo', 'Murilo@gmail.com', '4002889212', '123456'),
+(6, 'tthrshtr', 'ttrhshtr', 'htrsthrs', 'sthrhtrs');
 
 --
 -- Índices para tabelas despejadas
@@ -60,7 +63,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de tabela `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
