@@ -59,6 +59,9 @@ export default function Index() {
         <View style={Styles.usersContainer}>
           {users.map(user => (
             <Text key={user.id} style={Styles.list}>{user.name} - {user.email} - {user.status}</Text>
+            /*<Text>
+  {user.name} - {user.email} - {user.telefone}
+</Text>*/
           ))}
         </View>
       </View>

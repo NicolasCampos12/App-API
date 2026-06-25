@@ -15,11 +15,9 @@ export default function Index() {
   const [pass, setPass] = useState('');
 
 
-   const handleCadastro = () => {
+   async function handleCadastro() {
     const ip = '192.168.70.1'; 
 
-
-    // Dispara a requisição de cadastro para a rota POST
     fetch(`http://${ip}:4000/usuarios`, {
       method: 'POST',
       headers: {
@@ -76,5 +74,4 @@ export default function Index() {
 
         </View>
     );
-}
-
+} 
