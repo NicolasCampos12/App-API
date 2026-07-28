@@ -22,7 +22,7 @@ const sequelize = new Sequelize('app-api', 'root', '', {
     timestamps: false 
   }
 });
-//
+
 
 const User = sequelize.define('User', {
   id: {
