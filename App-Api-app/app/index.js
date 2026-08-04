@@ -1,6 +1,6 @@
-import { Text, View, TouchableOpacity, Button, } from "react-native"; // Link removido daqui
+import { Text, View, TouchableOpacity, Button, } from "react-native";
 import { useEffect, useState } from "react";
-import { Link } from 'expo-router'; // Descomentado! Agora o Link vem do lugar certo
+import { Link } from 'expo-router';
 import Styles from "./style";
 
 
@@ -9,16 +9,13 @@ export default function Index() {
   const [lista, setLista] = useState([]);
   const [users, setUsers] = useState([]);
 
-  // O index funcionando
 
   useEffect(() => {
-    const ip = '127.0.0.1'; // IP do servidor (localhost)
+   const ip = '127.0.0.1'; 
 
-    // busca rota 1
     fetch(`http://${ip}:4000/dados`)
       .then(res => res.json())
       .then(json => setMsg(json.message));
-    // busca rota 2
     fetch(`http://${ip}:4000/lista`)
       .then(res => res.json())
       .then(json => setLista(json));
